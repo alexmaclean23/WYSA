@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<title>Walpole Youth Soccer Association</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+body, html {
+    height: 100%;
+    color: #777;
+    line-height: 1.8;
+}
+
+
+/* Create a Parallax Effect */
+.bgimg-1, .bgimg-2, .bgimg-3 {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+/* First image (Logo. Full height) */
+.bgimg-1 {
+    background-image: url('http://www.walpolesoccer.org/cms/sites/default/files/node_gallery/DSC_0024.JPG');
+    min-height: 100%;
+}
+
+
+/* Second image (Portfolio) */
+.bgimg-2 {
+    background-image: url('http://cdn.paper4pc.com/images/grass-background-hd-wallpaper-1.jpg');
+    min-height: 400px;
+}
+
+
+/* Third image (Contact) */
+.bgimg-3 {
+    background-image: url('http://cdn.paper4pc.com/images/grass-background-hd-wallpaper-1.jpg');
+    min-height: 400px;
+}
+
+
+.w3-wide {letter-spacing: 10px;}
+.w3-hover-opacity {cursor: pointer;}
+
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+    .bgimg-1, .bgimg-2, .bgimg-3 {
+        background-attachment: scroll;
+    }
+}
+
+
+video {
+    width: 100%;
+    height: auto;
+}
+    
+button.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+button.accordion.active, button.accordion:hover {
+    background-color: #ccc;
+}
+
+button.accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+button.accordion.active:after {
+    content: "\2212";
+}
+
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+</style>
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <ul class="w3-navbar" id="myNavbar">
+    <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
+      <a class="w3-hover-black" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+        <i class="fa fa-bars"></i>
+      </a>
+    </li>
+    <li class="w3-left-align w3-hide-small"><a href="Index.html"><i class="fa fa-home"></i> BACK TO HOME PAGE</a></li>
+  </ul>
+</div>
+
+
+<!-- Parallax Image with Logo Text -->
+<div class="bgimg-1 w3-display-container">
+  <div class="w3-display-middle" style="white-space:nowrap;">
+    <span class="w3-center w3-padding-xlarge w3-black w3-xlarge w3-wide w3-animate-opacity">WALPOLE YOUTH SOCCER</span>
+  </div>
+</div>
+    
+<div class="w3-content w3-container w3-padding-64">
+  <h3 class="w3-center">GRADE 3</h3>
+    <p>3rd Grade is the transition year into travel soccer. The 3rd Grade teams play a modified, or 'limited' travel schedule, traveling to nearby towns for away games, hosting those same towns for home games, and also continuing to play some games vs. other WYSA 3rd Grade teams. Games are typically played on Saturdays in both the Fall and Spring seasons, with times varying as fields are available in the towns involved. See the link at the bottom of the page for the schedule (normally finalized a week or two before the season is scheduled to begin). Usually, we try to schedule intramural games (Walpole vs Walpole) for the first couple of weekends to ease everyone into the program.</p><br>
+    <button class="accordion">Game and Practice Schedule</button>
+        <div class="panel">
+            <p>
+            All 3rd Grade teams attend a Group Training Night, typically on Monday evenings with their coaches assisted by professionals from the New England Revolution. These are fast paced, learning-by-playing sessions that help players (and coaches) develop technical skills and tactical awareness appropriate for their age group. In addition, the coach typically holds one team-specific practice session each week.
+            </p>
+        </div>
+    <button class="accordion">Modified Game Information</button>
+        <div class="panel">
+            <p>3rd Grade soccer games are played on a standard field with 7 players, including a goal keeper, on each team. The games will be refereed and all general soccer rules, except off sides, will be in effect. In addition, WYSA has some special rules for U9 soccer, intended to focus on player education:</p>
+            <ul>
+                <li>Re-takes of throw-ins, goal kicks, free kicks and re-starts are allowed after the referee has explained (or demonstrated) the infraction.</li>
+                <li>There are no direct free kicks, or penalty kicks, only indirect free kicks. Indirect free kicks require the attacking team to make at least one pass before shooting at goal, following a foul.</li>
+                <li>On goal kicks, the defending team is to retreat into their own half (to provide the team with taking the goal kick the opportunity to clear the ball) until the ball is played out of the penalty area. This is a new rule that is being promoted at the 4th Grade age group too, to encourge teams to pass the ball out of their own defensive end of the field.</li>
+                <li>No goalie kicks or throws directly over the half way line.</li>
+                <li>There are no slide tackles and there are no headers.</li>
+                <li>No jewelry, including earings, may be worn at any time in the intrests of safety.</li>
+                <li>Coaches and players will occupy one side of the field and parents and spectators will occupy the opposite side. Only officially sanctioned head coaches and up to two sanctioned assistant coaches (maximum of 3 adults) may be with the players.</li>
+                <li><b>Coaches are ultimately responsible for overseeing that rules and policies are adhered to.</b></li>
+            </ul>
+        </div>
+    <button class="accordion">Zero Tolerance Policy</button>
+        <div class="panel">
+            <p>WYSA is bound by and supports the BAYS Zero Tolerance Policy code of conduct.</p>
+            <p>For more information about this policy, please click the link below:</p>
+            <div class="w3-center w3-padding-16">
+                <button onclick="window.location.href='Zero.html'" target="_blank" class="w3-btn w3-light-grey w3-padding-xlarge w3-center" type="button">Zero Tolerance Policy</button><br>
+            </div>
+        </div><br>
+    <p>Please check the website each week before heading to the fields for weather or field updates.</p>
+</div>
+
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].onclick = function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  }
+}
+    
+// Change style of navbar on scroll
+window.onscroll = function() {myFunction()};
+function myFunction() {
+    var navbar = document.getElementById("myNavbar");
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        navbar.className = "w3-navbar" + " w3-card-2" + " w3-animate-top" + " w3-white";
+    } else {
+        navbar.className = navbar.className.replace(" w3-card-2 w3-animate-top w3-white", "");
+    }
+}
+</script>
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off">
+  <a href="Index.html" class="w3-btn w3-padding w3-light-grey w3-hover-grey"><i class="fa fa-arrow-up w3-margin-right"></i>BACK TO HOMEPAGE</a>
+  <div class="w3-xlarge w3-section">
+  <a href="https://twitter.com/WalpoleSoccer" class="twitter-follow-button" data-show-count="false">Follow @WalpoleSoccer</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </div>
+</footer>
+ 
+</body>
+</html>

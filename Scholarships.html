@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<title>Walpole Youth Soccer Association</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+body, html {
+    height: 100%;
+    color: #777;
+    line-height: 1.8;
+}
+
+
+/* Create a Parallax Effect */
+.bgimg-1, .bgimg-2, .bgimg-3 {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+/* First image (Logo. Full height) */
+.bgimg-1 {
+    background-image: url('http://www.walpolesoccer.org/cms/sites/default/files/node_gallery/DSC_0024.JPG');
+    min-height: 100%;
+}
+
+
+/* Second image (Portfolio) */
+.bgimg-2 {
+    background-image: url('http://cdn.paper4pc.com/images/grass-background-hd-wallpaper-1.jpg');
+    min-height: 400px;
+}
+
+
+/* Third image (Contact) */
+.bgimg-3 {
+    background-image: url('http://cdn.paper4pc.com/images/grass-background-hd-wallpaper-1.jpg');
+    min-height: 400px;
+}
+
+
+.w3-wide {letter-spacing: 10px;}
+.w3-hover-opacity {cursor: pointer;}
+
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+    .bgimg-1, .bgimg-2, .bgimg-3 {
+        background-attachment: scroll;
+    }
+}
+
+
+video {
+    width: 100%;
+    height: auto;
+}
+</style>
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <ul class="w3-navbar" id="myNavbar">
+    <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
+      <a class="w3-hover-black" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+        <i class="fa fa-bars"></i>
+      </a>
+    </li>
+    <li class="w3-left-align w3-hide-small"><a href="Index.html"><i class="fa fa-home"></i> BACK TO HOME PAGE</a></li>
+  </ul>
+</div>
+
+<!-- Parallax Image with Logo Text -->
+<div class="bgimg-1 w3-display-container" id="home">
+  <div class="w3-display-middle" style="white-space:nowrap;">
+    <span class="w3-center w3-padding-xlarge w3-black w3-xlarge w3-wide w3-animate-opacity">WALPOLE YOUTH SOCCER</span>
+  </div>
+</div>
+
+
+<!-- Container ( Section) -->
+<div class="w3-content w3-container w3-padding-32">
+  <h3 class="w3-center">ELLIS MEMORIAL SCHOLARSHIP</h3>
+  <p>Each year, the Walpole Youth Soccer Association sponsors the Robert and Irene Ellis Memorial Scholarship for two graduating high school seniors (boy and girl) who participated in the youth soccer program and are continuing their education beyond high school. Each scholarship is for $500. To be eligible, the applicant must:<br><br>
+  - Be a graduating senior (from any high school)<br>
+  - Be a resident of Walpole<br>
+  - Have participated in the WYSA program<br>
+  - Be continuing his/her education after high school<br><br>
+  The Deadline is Sunday May 22nd at 11:59pm. The scholarship application should be emailed to <b>mgallivan@walpolesoccer.org</b> by 5/22/2015 11:59pm or sent via mail to Mark Gallivan, WYSA, 11 Bridle Path - Walpole MA 02081<br><br>
+  Recent Winners:<br>
+  The 2011 Winners were Jacqueline Teteault and Cameron McDonough<br>
+  The 2012 Winners were Tim Sullivan and Christina Freiberger<br>
+  The 2013 Winners were Emma Comiskey and Nolan Murray<br>
+  The 2014 Winners were Lauren Regan and Colin Murray<br>
+  The 2015 Winners were Abby McMackin and Liam McDonough<br>
+  The 2016 Winners were Erin Pitman and Belal El-Husayni<br><br>
+  Scholarship Application:<br>
+  <a href="http://www.walpolesoccer.org/cms/sites/default/files/2016-scholarship-application-blank.doc">Click Me to Download!</a>
+  </p>
+</div>
+    
+<!-- Container ( Section) -->
+<div class="w3-content w3-container w3-padding-32">
+  <h3 class="w3-center">ROSEN MEMORIAL SCHOLARSHIP</h3>
+  <p>Each year starting in 2013, the Walpole Youth Soccer Association sponsors the Caroleen Midura Rosen Memorial Scholarship for a graduating high school female soccer player, who participated in the youth soccer program, and is continuing their education beyond high school. To be eligible, the applicant must:<br><br>
+  - Be a graduating senior at Walpole High School<br>
+  - Be a resident of Walpole<br>
+  - Have participated in the WYSA program for many years<br>
+  - Have participated in WHS soccer<br>
+  - Be continuing her education by pursuing a Bachelor's degree<br>
+  - Have demonstrated a financial need<br><br>
+  The Deadline is Sunday May 22nd at 11:59pm. The scholarship application should be emailed to <b>mgallivan@walpolesoccer.org</b> by 5/22/2015 11:59pm or sent via mail to Mark Gallivan, WYSA, 11 Bridle Path - Walpole MA 02081<br><br>
+  Recent Winners:<br>
+  The 2013 Winner was Joanna Haswell<br>
+  The 2014 Winner was Karalyn Kickham<br>
+  The 2015 Winner was Rosie McCarthy<br>
+  The 2016 Winner was Julia Sandquist<br><br>
+   Scholarship Application:<br>
+  <a href="http://www.walpolesoccer.org/cms/sites/default/files/2016-scholarship-application-blank_0.doc">Click Me to Download!</a>
+  </p>
+</div>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].onclick = function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  }
+}
+    
+// Change style of navbar on scroll
+window.onscroll = function() {myFunction()};
+function myFunction() {
+    var navbar = document.getElementById("myNavbar");
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        navbar.className = "w3-navbar" + " w3-card-2" + " w3-animate-top" + " w3-white";
+    } else {
+        navbar.className = navbar.className.replace(" w3-card-2 w3-animate-top w3-white", "");
+    }
+}
+</script>
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off">
+  <a href="Index.html" class="w3-btn w3-padding w3-light-grey w3-hover-grey"><i class="fa fa-arrow-up w3-margin-right"></i>BACK TO HOMEPAGE</a>
+  <div class="w3-xlarge w3-section">
+   <a href="https://twitter.com/WalpoleSoccer" class="twitter-follow-button" data-show-count="false">Follow @WalpoleSoccer</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </div>
+</footer>
+ 
+</body>
+</html>

@@ -1,0 +1,701 @@
+<!-- Alex Maclean -->
+<!-- Period 7 Web Design -->
+<!-- Updated on 1/12/2017; Submitted on 1/13/2017 -->
+<!-- The WYSA website fulfills the requirements for the Term 2 Local Website project. This site includes paralax scroling, a fully functional navbar using JS, a bootstrap enabled multi-size layout, and a JS carousel. In addition, AngularJS was used for the contact portion of the site, and an embedded widget from Twitter is also present. -->
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">.gm-style .gm-style-mtc label,.gm-style .gm-style-mtc div{font-weight:400}</style><link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"><style type="text/css">.gm-style .gm-style-cc span,.gm-style .gm-style-cc a,.gm-style .gm-style-mtc div{font-size:10px}</style><style type="text/css">@media print {  .gm-style .gmnoprint, .gmnoprint {    display:none  }}@media screen {  .gm-style .gmnoscreen, .gmnoscreen {    display:none  }}</style><style type="text/css">.gm-style { font: 400 11px Roboto, Arial, sans-serif;text-decoration: none; }.gm-style img { max-width: none; }</style><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style><title>Walpole Youth Soccer</title>
+<meta charset="UTF-8">
+<meta name="description" content="WYSA website">
+<meta name="keywords" content="WYSA, Walpole, Youth, Soccer, Walpole Soccer, Walpole Youth Soccer">
+<meta name="author" content="Alex Maclean">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>,
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+body, html {
+    height: 100%;
+    color: #777;
+    line-height: 1.8;
+}
+
+/* Create a Parallax Effect */
+.bgimg-1, .bgimg-2, .bgimg-3 {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* First image (Logo. Full height) */
+.bgimg-1 {
+    background-image: url('http://www.walpolesoccer.org/cms/sites/default/files/node_gallery/DSC_0024.JPG');
+    min-height: 100%;
+}
+
+/* Second image (Portfolio) */
+.bgimg-2 {
+    background-image: url('https://cmkt-image-prd.global.ssl.fastly.net/0.1.0/ps/305547/580/393/m1/fpnw/wm0/1408.m00.i121.n044.p.c25.151769324-soccer-field-or-football-field-(gridiron)-.jpg?1421333146&s=c77a1136b687eb44bc8969a5943ed6d1');
+    min-height: 400px;
+}
+
+/* Third image (Contact) */
+.bgimg-3 {
+    background-image: url('https://cmkt-image-prd.global.ssl.fastly.net/0.1.0/ps/305547/580/393/m1/fpnw/wm0/1408.m00.i121.n044.p.c25.151769324-soccer-field-or-football-field-(gridiron)-.jpg?1421333146&s=c77a1136b687eb44bc8969a5943ed6d1');
+    min-height: 400px;
+}
+
+.w3-wide {letter-spacing: 10px;}
+.w3-hover-opacity {cursor: pointer;}
+
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+    .bgimg-1, .bgimg-2, .bgimg-3 {
+        background-attachment: scroll;
+    }
+}
+
+video {
+    width: 100%;
+    height: auto;
+}
+
+.overlay {
+    height: 0%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.9);
+    overflow-y: hidden;
+    transition: 0.5s;
+}
+
+.overlay-content {
+    position: relative;
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+    color: #f1f1f1;
+}
+
+.overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+}
+    
+@media screen and (max-height: 450px) {
+  .overlay {overflow-y: auto;}
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
+}
+
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
+}
+
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+    
+/* Popup container - can be anything you want */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+    
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+
+.accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+.active:after {
+    content: "\2212";
+}
+
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+    
+</style>
+<script type="text/javascript" charset="utf-8" async="" src="https://platform.twitter.com/js/button.ea31e9a5ca2c3a1514ec1ed6530e2669.js"></script><script type="text/javascript" charset="utf-8" async="" src="https://platform.twitter.com/js/timeline.619317855a58aa2366562a395f9e40ef.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/28/6/common.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/28/6/map.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/28/6/util.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/28/6/marker.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/28/6/onion.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/28/6/stats.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/28/6/controls.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps/api/js/QuotaService.RecordEvent?1shttp%3A%2F%2Ftechserver%2F2016web%2Fmacleana19%2FWYSA%2FIndex.html&amp;5e0&amp;6u1&amp;7snrj3mt&amp;callback=_xdc_._txoyj8&amp;token=47942"></script></head>
+
+<body>
+
+<script>
+$(document).ready(function(){
+  // Add scrollspy to <body>
+  $('body').scrollspy({target: ".navbar", offset: 50});   
+
+  // Add smooth scrolling on all links inside the navbar
+  $("#myNavbar a").on('click', function(event) {
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (1500) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 1500, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    }  // End if
+  });
+});
+</script>
+    
+<div id="myNav" class="overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <div class="overlay-content">
+    <h1>WYSA has a new website! Check it out, and feel free to click the settings icon to view development information.</h1><br>
+      <img src="https://www.wegotsoccer.com/mmWGS/team/walpole/walpole-logo.png" alt="Logo" width="280" height="400">
+  </div>
+</div>
+<script>
+function openNav() {
+    document.getElementById("myNav").style.height = "100%";
+}
+
+function closeNav() {
+    document.getElementById("myNav").style.height = "0%";
+}
+</script>
+    
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <ul class="w3-navbar w3-card-2 w3-animate-top w3-white" id="myNavbar">
+    <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
+      <a class="w3-hover-black" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+        <i class="fa fa-bars"></i>
+      </a>
+    </li>
+    <li class="w3-left-align"><a href="#home"><i class="fa fa-home"></i> HOME</a></li>
+    <li class="w3-hide-small"><a href="#about"><i class="fa fa-info-circle"></i> ABOUT</a></li>
+    <li class="w3-hide-small"><a href="#updates"><i class="fa fa-twitter"></i> UPDATES</a></li>
+    <li class="w3-hide-small"><a href="#registration"><i class="fa fa-user-plus"></i> REGISTRAR</a></li>
+    <li class="w3-hide-small"><a href="#fields"><i class="fa fa-street-view"></i> FIELDS</a></li>
+    <li class="w3-hide-small"><a href="#referees"><i class="fa fa-hand-stop-o"></i> REFEREES</a></li>
+    <li class="w3-hide-small"><a href="#teams"><i class="fa fa-users"></i> TEAMS</a></li>
+    <li class="w3-hide-small"><a href="#practices"><i class="fa fa-soccer-ball-o"></i> PRACTICES</a></li>
+    <li class="w3-hide-small"><a href="#portfolio"><i class="fa fa-th"></i> PICTURES</a></li>
+    <li class="w3-hide-small"><a href="#contact"><i class="fa fa-envelope"></i> CONTACT</a></li>
+    <li class="w3-hide-small"><a href="#gear"><i class="fa fa-shopping-cart"></i> GEAR</a></li>
+    <li class="w3-hide-small"><a href="Source.html"><i class="fa fa-cog fa-spin"></i> DEV INFO</a></li>
+  </ul>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium">
+    <ul class="w3-navbar w3-left-align w3-white">
+      <li><a href="#about" onclick="toggleFunction()"> ABOUT</a></li>
+      <li><a href="#updates" onclick="toggleFunction()"> UPDATES</a></li>
+      <li><a href="#registration" onclick="toggleFunction()"> REGISTRAR</a></li>
+      <li><a href="#fields" onclick="toggleFunction()"> FIELDS</a></li>
+      <li><a href="#referees" onclick="toggleFunction()"> REFEREES</a></li>
+      <li><a href="#teams" onclick="toggleFunction()"> TEAMS</a></li>
+      <li><a href="#practices" onclick="toggleFunction()"> PRACTICES</a></li>
+      <li><a href="#portfolio" onclick="toggleFunction()"> PICTURES</a></li>
+      <li><a href="#contact" onclick="toggleFunction()"> CONTACT</a></li>
+      <li><a href="#gear" onclick="toggleFunction()"> GEAR</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Parallax Image with Logo Text -->
+<div class="bgimg-1 w3-display-container" id="home">
+  <div class="w3-display-middle" style="white-space:nowrap;">
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()" class="w3-center w3-padding-xlarge w3-black w3-xlarge w3-wide w3-animate-opacity">WALPOLE YOUTH SOCCER</span>
+  </div>
+</div>
+  
+<!-- Container (About Section) -->
+<div class="w3-content w3-container w3-padding-64" id="about">
+  <h3 class="w3-center">ABOUT WYSA</h3>
+    <h4 class="w3-center">*Scroll up and click the WYSA banner for update information!*</h4>
+  <p>WYSA is a volunteer run organization dedicated to providing the youth of Walpole the opportunity to learn, play and appreciate the game of soccer. WYSA is committed to providing a soccer experience that is fun and safe for players, coaches, referees and spectators. WYSA provides playing opportunities for over 1,000 players, from Kindergarten through high school, on approximately 85 teams in both its in-town program and its membership in the Boston Area Youth Soccer Association (BAYS). WYSA sponsors player and coaching clinics and coaching licensing courses in conjunction with Massachusetts Youth Soccer Association (MYSA). WYSA each year also sponsors the Robert and Irene Ellis Memorial Scholarship for two graduating high school seniors (boy and girl) who participated in the soccer program and are continuing their education beyond high school.</p>
+  <div class="w3-row">
+    <div class="w3-col m6 w3-center w3-padding-large">
+      <p><b><i class="fa fa-user w3-margin-right"></i><abbr title="Walpole Youth Soccer Association">WYSA</abbr></b></p><br>
+      <img src="http://www.walpolesoccer.org/cms/sites/default/files/wysa_logo_oval_small_1.png" class="w3-round w3-image" alt="Logo" width="200" height="53">
+    </div>
+
+    <!-- Hide this text on small devices -->
+    <div class="w3-col m6 w3-hide-small w3-padding-large">
+      <p>WYSA has two primary field locations for our Fall and Spring seasons: Mylod Field and Ellis Field. In addition, we have limited use of Bird Middle School, and Fisher School. The Town of Walpole, in conjunction with Walpole Cooperative Bank and others created Mylod Field. WYSA bore the total costs of its development, and has remained solely responsible for all upkeep and maintenance. WYSA also manages the field upkeep for Ellis Field, which is owned by The Trustees of Reservations. Our volunteers run all parts of the organization via direction from the Board of Directors. WYSA is a self-supported organization, generating the necessary operating revenue through player fees and sometimes other fundraisers. Revenue is used to provide uniforms and equipment to players, field equipment (goals, flags, storage, and maintenance equipment), field on-going maintenance and improvements, league and referee fees, insurance, etc.</p>
+    </div>
+  </div>
+  <p>Below are a few links to additional information regarding WYSA regulations, scholarship oppurtunities, WYSA administrators, and how to become a coach for any age group supported by WYSA.</p>
+    <div class="w3-container w3-center">
+        <button onclick="window.location.href='Dogs.html'" class="w3-btn w3-light-grey w3-padding-xlarge w3-center" target="_blank" type="button">No Dogs Allowed</button>
+        <button onclick="window.location.href='Scholarships.html'" class="w3-btn w3-light-grey w3-padding-xlarge w3-center" target="_blank" type="button">Scholarships</button>
+        <button onclick="window.location.href='Admin.html'" class="w3-btn w3-light-grey w3-padding-xlarge w3-center" target="_blank" type="button">Board of Directors</button>
+        <button onclick="window.location.href='Volunteers.html'" class="w3-btn w3-light-grey w3-padding-xlarge w3-center" target="_blank" type="button">Volunteers</button>
+    </div>
+</div>
+
+<!-- Parallax Image with Portfolio Text -->
+<div class="bgimg-2 w3-display-container w3-opacity-min" id="updates">
+  <div class="w3-display-middle">
+    <span class="w3-xxlarge w3-text-light-grey w3-wide w3-padding-xlarge w3-black w3-wide w3-animate-opacity">UPDATES</span>
+  </div>
+</div>
+
+<!-- Container (Updates Section) -->
+<div class="w3-content w3-container w3-padding-64">
+<a class="twitter-timeline" data-height="450" href="https://twitter.com/WalpoleSoccer">Tweets by WalpoleSoccer</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><br><br>
+
+<h2 class="w3-center w3-light-grey w3-text-black">Important Updates</h2>
+<button class="accordion">Fall 2018 GK Clinics at Ellis Field on Monday afternoons</button>
+<div class="panel">
+  <p>
+    <ul>
+        <li>Week of August 13th thru 17th at Mylod Fields</li>
+        <li>Open to all players K through 8th Grade</li>
+        <li>Camp will run from 10am - 12.30pm each day (** please check in at 9:40 on Monday **)</li>
+        <li>Cost: $200</li><br>
+        Don't miss this chance to have your youth player(s) practice and learn new skills before the season starts, RIGHT HERE IN WALPOLE!!
+        Just like last year we will have lots of Walpole High School Boys and Girls VARSITY players who will be team leaders/counselors. This is a great chance for the kids to meet and interact with Varsity players.
+    </ul>
+  </p>
+</div>
+
+<button class="accordion">Section 2</button>
+<div class="panel">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+
+<button class="accordion">Section 3</button>
+<div class="panel">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+</div>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+</div>
+
+<!-- Parallax Image with Portfolio Text -->
+<div class="bgimg-2 w3-display-container w3-opacity-min" id="registration">
+  <div class="w3-display-middle">
+    <span class="w3-xxlarge w3-text-light-grey w3-wide w3-padding-xlarge w3-black w3-wide w3-animate-opacity">REGISTRATION</span>
+  </div>
+</div>
+    
+<!-- Container (Registration Section) -->
+<div class="w3-content w3-container w3-padding-64">
+    <h3 class="w3-center">Registration is now OPEN</h3>
+        <ul>
+        <li>Registration for Spring 2017 soccer is now open through December 31st.</li>
+        <li>Registration for Winter Skills Clinics and Winter Goalkeeper Clinics is also open.</li>
+        <li>Winter Skills Clinics at Forekicks:</li>
+            <b>- </b>Winter skills clinics with the NE Revs coaches will be offered on Fri evenings from 5-6pm at Forekicks from Jan 6th – Mar 17th (10 weeks, skipping Feb vacation week). These clinics will be limited to 40 players total to maximize the coach to player ratio. Cost for the full session is $150/player.
+        <li>Winter Goalkeeper Clinics at Bird Middle School:</li>
+            <b>- </b>Dedicated goalkeeper training with the Revs GK coaches will be offered on Tues afternoons from 4:30-6pm at the BMS gym from January 10th to March 7th (8 weeks, skipping school vacation week). The GK clinic will be limited to 12 dedicated goalkeepers to maximize the coach to player ratio. Cost for the full session is $150/player.
+        </ul>
+    <div class="w3-container w3-center">
+        <button onclick="window.location.href='Registration.html'" class="w3-btn w3-light-grey w3-padding-xlarge w3-center" target="_blank" type="button">Learn More Here</button>
+        <button onclick="window.location='https://secure.adminsports.net/walpolemasoccer'" class="w3-btn w3-light-grey w3-padding-xlarge w3-center" target="_blank" type="button">Sign Me Up!</button>
+    </div>
+</div>
+    
+<!-- Parallax Image with Portfolio Text -->
+<div class="bgimg-2 w3-display-container w3-opacity-min" id="fields">
+  <div class="w3-display-middle">
+    <span class="w3-xxlarge w3-text-light-grey w3-wide w3-padding-xlarge w3-black w3-wide w3-animate-opacity">FIELDS</span>
+  </div>
+</div>
+    
+<!-- Container (Fields Section) -->
+<div class="w3-content w3-container w3-padding-64">
+  <h3 class="w3-center">OUR FIELDS</h3>
+  <p>WYSA has four main facilities for our practices and home games: Mylod, Ellis, Fisher School, and Bird Middle School. Click the links below to view pictures and directions for each of our four facilities. For additional help, visit the Contact section at the bottom of the page to submit any question, comments, or concerns you may have regarding our fields.</p>
+    <div class="w3-container w3-center">
+        <button onclick="window.location.href='Mylod.html'" target="_blank" class="w3-btn w3-light-grey w3-padding-xlarge w3-center" type="button">Mylod Field</button>
+        <button onclick="window.location.href='Ellis.html'" target="_blank" class="w3-btn w3-light-grey w3-padding-xlarge w3-center" type="button">Ellis Field</button>
+        <button onclick="window.location.href='Fisher.html'" target="_blank" class="w3-btn w3-light-grey w3-padding-xlarge w3-center" type="button">Fisher School</button>
+        <button onclick="window.location.href='Bird.html'" target="_blank" class="w3-btn w3-light-grey w3-padding-xlarge w3-center" type="button">Bird Middle School</button>
+    </div>
+</div>
+    
+<!-- Parallax Image with Portfolio Text -->
+<div class="bgimg-2 w3-display-container w3-opacity-min" id="referees">
+  <div class="w3-display-middle">
+    <span class="w3-xxlarge w3-text-light-grey w3-wide w3-padding-xlarge w3-black w3-wide w3-animate-opacity">REFEREES</span>
+  </div>
+</div>
+    
+<!-- Container (Referees Section) -->
+<div class="w3-content w3-container w3-padding-64">
+  <h3 class="w3-center">REFEREES</h3>
+  <p>WYSA currently has 25 active referees for the season. If you have an interest in being a referee, you must be 14 years or older, adults welcome, and you must have a Grade 8 Referee certification. Details on the course and test are available through the Mass Referee Association (link below). Once you have succesfully completed that test - please contact Ms. Rachel Hanson - the Director of Referees through the website 'Contact' section.<br><br>WYSA is in full support of the Zero Tolerance Policy. All individuals are expected to support every decion made by the referee and the linesmen, and good sportsmanship towards the players, coaches, and spectators is required at all times.</p><br>
+    <div class="w3-container w3-center">
+        <button onclick="window.location.href='Zero.html'" target="_blank" class="w3-btn w3-light-grey w3-padding-xlarge w3-center" type="button">Zero Tolerance Policy</button>
+        <button onclick="window.location='http://www.massref.net'" target="_blank" class="w3-btn w3-light-grey w3-padding-xlarge w3-center" type="button">Referee Course Enrollment</button>
+    </div>
+</div>
+    
+<!-- Parallax Image with Portfolio Text -->
+<div class="bgimg-2 w3-display-container w3-opacity-min" id="teams">
+  <div class="w3-display-middle">
+    <span class="w3-xxlarge w3-text-light-grey w3-wide w3-padding-xlarge w3-black w3-wide w3-animate-opacity">TEAMS</span>
+  </div>
+</div>
+    
+<!-- Container (Teams Section) -->
+<div class="w3-content w3-container w3-padding-64">
+  <h3 class="w3-center">TEAMS AND PROGRAMS</h3>
+  <p>Walpole Youth Soccer offers both In-Town and Travel Soccer programs depending upon a child's grade and age. For more information about each program, select the program for your child's age under using the Programs drop down menu at the top of the page. Eligibility is determined by the child’s grade and birthdate. Children should play in the youngest level for which they are eligible. Please note that all travel teams will have tryouts. Click the link below to access more information regarding these tryouts.</p>
+    <div class="w3-container w3-center">
+        <button onclick="window.location.href='tryout.html'" class="w3-btn w3-light-grey w3-padding-xlarge w3-center" type="button">Tryout Information</button>
+    </div>
+   <p>Below are the links to each age category that WYSA organizes. Click the link that applies to your child's grade to view specifics for that age group. For any confusion about which age group your child should be registering form, please click the Contact menu link to submit a question.</p>
+    <div class="w3-container w3-center">
+        <button onclick="window.location.href='K.html'" class="w3-btn w3-light-grey w3-padding-xlarge w3-center" type="button">Kindergarten</button>
+        <button onclick="window.location.href='1-2.html'" class="w3-btn w3-light-grey w3-padding-xlarge w3-center" type="button">1st-2nd Grade</button>
+        <button onclick="window.location.href='3.html'" class="w3-btn w3-light-grey w3-padding-xlarge w3-center" type="button">3rd Grade</button>
+        <button onclick="window.location.href='4-8.html'" class="w3-btn w3-light-grey w3-padding-xlarge w3-center" type="button">4th-8th Grade</button>
+    </div>
+  <p>WYSA is bound by and fully supports the Zero Tolerance Policy. Please review this policy by clicking the menu link at the top of your screen for any questions or concerns you may have.</p>
+</div>
+    
+<!-- Parallax Image with Portfolio Text -->
+<div class="bgimg-2 w3-display-container w3-opacity-min" id="practices">
+  <div class="w3-display-middle">
+    <span class="w3-xxlarge w3-text-light-grey w3-wide w3-padding-xlarge w3-black w3-wide w3-animate-opacity">PRACTICES</span>
+  </div>
+</div>
+    
+<!-- Container (Practices Section) -->
+<div class="w3-content w3-container w3-padding-64">
+  <h3 class="w3-center">PRACTICE SCHEDULES</h3>
+  <p style="text-align:center">Click the link below for the schedule of fields for practices. Coaches - Please note that while weather and conflicts may result in a need to change your planned practices, the team that has a regularly reserved practice has priority. Also, make-up games have priority. Any coach needing to reschedule a make-up game, please try to schedule on Sundays. For ALL make-up games please email:<br> Rachel Jackson (Ref Coordinator)<br> hanson657565@msn.com<br> Callum Maclean (President)<br> cmaclean@walpolesoccer.org<br>  For those games that can only be rescheduled for midweek, as a courtesy please ALSO email those coaches who have a regularly scheduled practice that will be impacted.</p>
+    <div class="w3-container w3-center">
+        <button target="_blank" onclick="window.location='http://www.walpolesoccer.org/cms/sites/default/files/WYSA%20Practice%20Field%20Schedule%20Fall%202016_0.xls'" class="w3-btn w3-light-grey w3-padding-xlarge w3-center" type="button">Practice Schedules</button>
+    </div>
+</div>
+    
+<!-- Parallax Image with Portfolio Text -->
+<div class="bgimg-2 w3-display-container w3-opacity-min" id="portfolio">
+  <div class="w3-display-middle">
+    <span class="w3-xxlarge w3-text-light-grey w3-wide w3-padding-xlarge w3-black w3-wide w3-animate-opacity">PICTURES</span>
+  </div>
+</div>
+
+
+<!-- Container (Pictures Section) -->
+<div class="w3-content w3-container w3-padding-64">
+  <h3 class="w3-center">Recent Pictures</h3>
+<br>
+<div class="w3-content w3-display-container">
+  <img class="mySlides" src="http://www.walpolesoccer.org/cms/sites/default/files/node_gallery/DSC_0024.JPG" style="width: 100%; display: block;">
+  <img class="mySlides" src="http://www.walpolesoccer.org/cms/sites/default/files/node_gallery/DSC_0003.JPG" style="width: 100%; display: none;">
+  <img class="mySlides" src="http://www.walpolesoccer.org/cms/sites/default/files/node_gallery/DSC_0034.JPG" style="width: 100%; display: none;">
+  <img class="mySlides" src="http://www.walpolesoccer.org/cms/sites/default/files/node_gallery/DSC_0028.JPG" style="width: 100%; display: none;">
+
+  <a class="w3-btn w3-display-left" onclick="plusDivs(-1)">❮</a>
+  <a class="w3-btn w3-display-right" onclick="plusDivs(1)">❯</a>
+</div>
+
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";  
+  }
+  x[slideIndex-1].style.display = "block";  
+}
+</script>
+</div>
+
+
+<!-- Parallax Image with Portfolio Text -->
+<div class="bgimg-3 w3-display-container w3-opacity-min" id="contact">
+  <div class="w3-display-middle">
+     <span class="w3-xxlarge w3-text-light-grey w3-wide w3-padding-xlarge w3-black w3-wide w3-animate-opacity">CONTACT</span>
+  </div>
+</div>
+
+
+<!-- Container (Contact Section) -->
+<div class="w3-content w3-container w3-padding-64">
+  <h3 class="w3-center">OUR MAIN FACILITY</h3>
+    <div class="w3-row w3-padding-32 w3-section">
+    <div class="w3-col m4 w3-container">
+      <!-- Add Google Maps -->
+      <div id="googleMap" class="w3-round-large" style="width: 100%; height: 400px; position: relative; overflow: hidden;"><div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);"><div class="gm-style" style="position: absolute; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; z-index: 0;"><div style="position: absolute; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; z-index: 0;"><div style="position: absolute; left: 0px; top: 0px; z-index: 1; width: 100%; transform-origin: 0px 0px 0px; transform: matrix(1, 0, 0, 1, 0, 0);"><div style="position: absolute; left: 0px; top: 0px; z-index: 100; width: 100%;"><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"><div aria-hidden="true" style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;"><div style="width: 256px; height: 256px; position: absolute; left: -193px; top: -20px;"></div><div style="width: 256px; height: 256px; position: absolute; left: -193px; top: 236px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 63px; top: -20px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 63px; top: 236px;"></div></div></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 101; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 102; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 103; width: 100%;"><div style="position: absolute; left: 0px; top: 0px; z-index: -1;"><div aria-hidden="true" style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;"><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -193px; top: -20px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -193px; top: 236px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 63px; top: -20px;"><canvas draggable="false" height="256" width="256" style="user-select: none; position: absolute; left: 0px; top: 0px; height: 256px; width: 256px;"></canvas></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 63px; top: 236px;"></div></div></div></div><div style="position: absolute; z-index: 0; left: 0px; top: 0px;"><div style="overflow: hidden; width: 284px; height: 400px;"><img src="https://maps.googleapis.com/maps/api/js/StaticMapService.GetMapImage?1m2&amp;1i633537&amp;2i776980&amp;2e1&amp;3u13&amp;4m2&amp;1u284&amp;2u400&amp;5m5&amp;1e0&amp;5sen-US&amp;6sus&amp;10b1&amp;12b1&amp;token=130380" style="width: 284px; height: 400px;"></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"><div aria-hidden="true" style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;"><div style="position: absolute; left: -193px; top: 236px; transition: opacity 200ms ease-out;"><img src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i13!2i2474!3i3036!4i256!2m3!1e0!2sm!3i376062352!3m9!2sen-US!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0&amp;token=90439" draggable="false" alt="" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: -193px; top: -20px; transition: opacity 200ms ease-out;"><img src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i13!2i2474!3i3035!4i256!2m3!1e0!2sm!3i376062352!3m9!2sen-US!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0&amp;token=54418" draggable="false" alt="" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 63px; top: 236px; transition: opacity 200ms ease-out;"><img src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i13!2i2475!3i3036!4i256!2m3!1e0!2sm!3i376062352!3m9!2sen-US!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0&amp;token=36896" draggable="false" alt="" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 63px; top: -20px; transition: opacity 200ms ease-out;"><img src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i13!2i2475!3i3035!4i256!2m3!1e0!2sm!3i376062352!3m9!2sen-US!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0&amp;token=875" draggable="false" alt="" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 2; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 3; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 4; width: 100%; transform-origin: 0px 0px 0px; transform: matrix(1, 0, 0, 1, 0, 0);"><div style="position: absolute; left: 0px; top: 0px; z-index: 104; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 105; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 106; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 107; width: 100%;"></div></div><iframe frameborder="0" style="z-index: -1; border: 0px none; position: absolute; height: 100%; width: 100%; padding: 0px; margin: 0px; left: 0px; top: 0px;"></iframe></div><div style="margin-left: 5px; margin-right: 5px; z-index: 1000000; position: absolute; left: 0px; bottom: 0px;"><a target="_blank" href="https://maps.google.com/maps?ll=42.167931,-71.221745&amp;z=13&amp;t=m&amp;hl=en-US&amp;gl=US&amp;mapclient=apiv3" title="Click to see this area on Google Maps" style="position: static; overflow: visible; float: none; display: inline;"><div style="width: 66px; height: 26px; cursor: pointer;"><img src="https://maps.gstatic.com/mapfiles/api-3/images/google4.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 66px; height: 26px; user-select: none; border: 0px; padding: 0px; margin: 0px;"></div></a></div><div style="background-color: white; padding: 15px 21px; border: 1px solid rgb(171, 171, 171); font-family: Roboto, Arial, sans-serif; color: rgb(34, 34, 34); box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 16px; z-index: 10000002; display: none; width: 230px; height: 148px; position: absolute; left: 5px; top: 110px;"><div style="padding: 0px 0px 10px; font-size: 16px;">Map Data</div><div style="font-size: 13px;">Map data ©2017 Google</div><div style="width: 13px; height: 13px; overflow: hidden; position: absolute; opacity: 0.7; right: 12px; top: 12px; z-index: 10000; cursor: pointer;"><img src="https://maps.gstatic.com/mapfiles/api-3/images/mapcnt6.png" draggable="false" style="position: absolute; left: -2px; top: -336px; width: 59px; height: 492px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div><div class="gmnoprint" style="z-index: 1000001; position: absolute; right: 71px; bottom: 0px; width: 121px;"><div draggable="false" class="gm-style-cc" style="user-select: none; height: 14px; line-height: 14px;"><div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;"><div style="width: 1px;"></div><div style="background-color: rgb(245, 245, 245); width: auto; height: 100%; margin-left: 1px;"></div></div><div style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;"><a style="color: rgb(68, 68, 68); text-decoration: none; cursor: pointer; display: none;">Map Data</a><span style="">Map data ©2017 Google</span></div></div></div><div class="gmnoscreen" style="position: absolute; right: 0px; bottom: 0px;"><div style="font-family: Roboto, Arial, sans-serif; font-size: 11px; color: rgb(68, 68, 68); direction: ltr; text-align: right; background-color: rgb(245, 245, 245);">Map data ©2017 Google</div></div><div class="gmnoprint gm-style-cc" draggable="false" style="z-index: 1000001; user-select: none; height: 14px; line-height: 14px; position: absolute; right: 0px; bottom: 0px;"><div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;"><div style="width: 1px;"></div><div style="background-color: rgb(245, 245, 245); width: auto; height: 100%; margin-left: 1px;"></div></div><div style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;"><a href="https://www.google.com/intl/en-US_US/help/terms_maps.html" target="_blank" style="text-decoration: none; cursor: pointer; color: rgb(68, 68, 68);">Terms of Use</a></div></div><div style="cursor: pointer; width: 25px; height: 25px; overflow: hidden; display: none; margin: 10px 14px; position: absolute; top: 0px; right: 0px;"><img src="https://maps.gstatic.com/mapfiles/api-3/images/sv9.png" draggable="false" class="gm-fullscreen-control" style="position: absolute; left: -52px; top: -86px; width: 164px; height: 175px; user-select: none; border: 0px; padding: 0px; margin: 0px;"></div><div draggable="false" class="gm-style-cc" style="user-select: none; height: 14px; line-height: 14px; display: none; position: absolute; right: 0px; bottom: 0px;"><div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;"><div style="width: 1px;"></div><div style="background-color: rgb(245, 245, 245); width: auto; height: 100%; margin-left: 1px;"></div></div><div style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;"><a target="_new" title="Report errors in the road map or imagery to Google" href="https://www.google.com/maps/@42.167931,-71.221745,13z/data=!10m1!1e1!12b1?source=apiv3&amp;rapsrc=apiv3" style="font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); text-decoration: none; position: relative;">Report a map error</a></div></div><div class="gmnoprint gm-bundled-control gm-bundled-control-on-bottom" draggable="false" controlwidth="28" controlheight="93" style="margin: 10px; user-select: none; position: absolute; bottom: 107px; right: 28px;"><div class="gmnoprint" controlwidth="28" controlheight="55" style="position: absolute; left: 0px; top: 38px;"><div draggable="false" style="user-select: none; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; border-radius: 2px; cursor: pointer; background-color: rgb(255, 255, 255); width: 28px; height: 55px;"><div title="Zoom in" style="position: relative; width: 28px; height: 27px; left: 0px; top: 0px;"><div style="overflow: hidden; position: absolute; width: 15px; height: 15px; left: 7px; top: 6px;"><img src="https://maps.gstatic.com/mapfiles/api-3/images/tmapctrl.png" draggable="false" style="position: absolute; left: 0px; top: 0px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; width: 120px; height: 54px;"></div></div><div style="position: relative; overflow: hidden; width: 67%; height: 1px; left: 16%; background-color: rgb(230, 230, 230); top: 0px;"></div><div title="Zoom out" style="position: relative; width: 28px; height: 27px; left: 0px; top: 0px;"><div style="overflow: hidden; position: absolute; width: 15px; height: 15px; left: 7px; top: 6px;"><img src="https://maps.gstatic.com/mapfiles/api-3/images/tmapctrl.png" draggable="false" style="position: absolute; left: 0px; top: -15px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; width: 120px; height: 54px;"></div></div></div></div><div class="gm-svpc" controlwidth="28" controlheight="28" style="background-color: rgb(255, 255, 255); box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; border-radius: 2px; width: 28px; height: 28px; cursor: url(&quot;https://maps.gstatic.com/mapfiles/openhand_8_8.cur&quot;) 8 8, default; position: absolute; left: 0px; top: 0px;"><div style="position: absolute; left: 1px; top: 1px;"></div><div style="position: absolute; left: 1px; top: 1px;"><div aria-label="Street View Pegman Control" style="width: 26px; height: 26px; overflow: hidden; position: absolute; left: 0px; top: 0px;"><img src="https://maps.gstatic.com/mapfiles/api-3/images/cb_scout5.png" draggable="false" style="position: absolute; left: -147px; top: -26px; width: 215px; height: 835px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div aria-label="Pegman is on top of the Map" style="width: 26px; height: 26px; overflow: hidden; position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="https://maps.gstatic.com/mapfiles/api-3/images/cb_scout5.png" draggable="false" style="position: absolute; left: -147px; top: -52px; width: 215px; height: 835px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div aria-label="Street View Pegman Control" style="width: 26px; height: 26px; overflow: hidden; position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="https://maps.gstatic.com/mapfiles/api-3/images/cb_scout5.png" draggable="false" style="position: absolute; left: -147px; top: -78px; width: 215px; height: 835px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div></div><div class="gmnoprint" controlwidth="28" controlheight="0" style="display: none; position: absolute;"><div title="Rotate map 90 degrees" style="width: 28px; height: 28px; overflow: hidden; position: absolute; border-radius: 2px; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; cursor: pointer; background-color: rgb(255, 255, 255); display: none;"><img src="https://maps.gstatic.com/mapfiles/api-3/images/tmapctrl4.png" draggable="false" style="position: absolute; left: -141px; top: 6px; width: 170px; height: 54px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div class="gm-tilt" style="width: 28px; height: 28px; overflow: hidden; position: absolute; border-radius: 2px; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; top: 0px; cursor: pointer; background-color: rgb(255, 255, 255);"><img src="https://maps.gstatic.com/mapfiles/api-3/images/tmapctrl4.png" draggable="false" style="position: absolute; left: -141px; top: -13px; width: 170px; height: 54px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div></div><div class="gmnoprint" style="margin: 10px; z-index: 0; position: absolute; cursor: pointer; left: 0px; top: 0px;"><div class="gm-style-mtc" style="float: left;"><div draggable="false" title="Show street map" style="direction: ltr; overflow: hidden; text-align: center; position: relative; color: rgb(0, 0, 0); font-family: Roboto, Arial, sans-serif; user-select: none; font-size: 11px; background-color: rgb(255, 255, 255); padding: 8px; border-bottom-left-radius: 2px; border-top-left-radius: 2px; -webkit-background-clip: padding-box; background-clip: padding-box; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; min-width: 21px; font-weight: 500;">Map</div><div style="background-color: white; z-index: -1; padding: 2px; border-bottom-left-radius: 2px; border-bottom-right-radius: 2px; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; position: absolute; left: 0px; top: 29px; text-align: left; display: none;"><div draggable="false" title="Show street map with terrain" style="color: rgb(0, 0, 0); font-family: Roboto, Arial, sans-serif; user-select: none; font-size: 11px; background-color: rgb(255, 255, 255); padding: 6px 8px 6px 6px; direction: ltr; text-align: left; white-space: nowrap;"><span role="checkbox" style="box-sizing: border-box; position: relative; line-height: 0; font-size: 0px; margin: 0px 5px 0px 0px; display: inline-block; background-color: rgb(255, 255, 255); border: 1px solid rgb(198, 198, 198); border-radius: 1px; width: 13px; height: 13px; vertical-align: middle;"><div style="position: absolute; left: 1px; top: -2px; width: 13px; height: 11px; overflow: hidden; display: none;"><img src="https://maps.gstatic.com/mapfiles/mv/imgs8.png" draggable="false" style="position: absolute; left: -52px; top: -44px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; width: 68px; height: 67px;"></div></span><label style="vertical-align: middle; cursor: pointer;">Terrain</label></div></div></div><div class="gm-style-mtc" style="float: left;"><div draggable="false" title="Show satellite imagery" style="direction: ltr; overflow: hidden; text-align: center; position: relative; color: rgb(86, 86, 86); font-family: Roboto, Arial, sans-serif; user-select: none; font-size: 11px; background-color: rgb(255, 255, 255); padding: 8px; border-bottom-right-radius: 2px; border-top-right-radius: 2px; -webkit-background-clip: padding-box; background-clip: padding-box; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; border-left: 0px; min-width: 37px;">Satellite</div><div style="background-color: white; z-index: -1; padding: 2px; border-bottom-left-radius: 2px; border-bottom-right-radius: 2px; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; position: absolute; right: 0px; top: 29px; text-align: left; display: none;"><div draggable="false" title="Show imagery with street names" style="color: rgb(0, 0, 0); font-family: Roboto, Arial, sans-serif; user-select: none; font-size: 11px; background-color: rgb(255, 255, 255); padding: 6px 8px 6px 6px; direction: ltr; text-align: left; white-space: nowrap;"><span role="checkbox" style="box-sizing: border-box; position: relative; line-height: 0; font-size: 0px; margin: 0px 5px 0px 0px; display: inline-block; background-color: rgb(255, 255, 255); border: 1px solid rgb(198, 198, 198); border-radius: 1px; width: 13px; height: 13px; vertical-align: middle;"><div style="position: absolute; left: 1px; top: -2px; width: 13px; height: 11px; overflow: hidden;"><img src="https://maps.gstatic.com/mapfiles/mv/imgs8.png" draggable="false" style="position: absolute; left: -52px; top: -44px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; width: 68px; height: 67px;"></div></span><label style="vertical-align: middle; cursor: pointer;">Labels</label></div></div></div></div></div></div></div>
+    </div>
+    <div class="w3-col m8 w3-container w3-section">
+      <div class="w3-large w3-margin-bottom">
+        <i class="fa fa-map-marker fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i>Walpole, MA<br>
+        <i class="fa fa-car fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i>Mylod Street<br>
+        <i class="fa fa-envelope fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Email: info@walpolesoccer.org<br>
+      </div>
+             <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+          <div class="w3-half">
+            <input class="w3-input w3-border" type="text" placeholder="Name" required="" name="Name">
+          </div>
+          <div class="w3-half">
+            <input class="w3-input w3-border" type="text" placeholder="Email" required="" name="Email">
+          </div>
+        </div>
+        <input class="w3-input w3-border" type="text" placeholder="Message" required="" name="Message">
+        <button class="w3-btn w3-black w3-right w3-padding w3-section" type="submit">
+          <i class="fa fa-paper-plane"></i> SEND MESSAGE
+        </button>
+    </div>
+  </div>
+</div>
+    
+<!-- Parallax Image with Portfolio Text -->
+<div class="bgimg-2 w3-display-container w3-opacity-min" id="gear">
+  <div class="w3-display-middle">
+    <span class="w3-xxlarge w3-text-light-grey w3-wide w3-padding-xlarge w3-black w3-wide w3-animate-opacity">GEAR</span>
+  </div>
+</div>    
+    
+<!-- Container (Gear Section) -->
+<div class="w3-content w3-container w3-padding-64">
+  <h3 class="w3-center">WYSA Gear</h3>
+  <p>WYSA Uniforms are ordered through We Got Soccer Online Only. To order your WYSA uniform, click on We Got Soccer Logo. In addition, we encourage you to visit ISlides to check out their pregame foot attire and to support WYSA! Click the Islides Logo for more Information!</p><br>
+    <div class="w3-center">
+        <a href="https://www.islideusa.com/products/walpole" target="_blank">
+            <img class="w3-image" src="http://www.walpolesoccer.org/cms/sites/default/files/field/image/islide_logo.png" alt="ISlides">
+        </a>
+        <a href="https://www.wegotsoccer.com/walpole" target="_blank">
+            <img height="250" width="400" src="https://www.wegotsoccer.com/images/topbaricons/wegotsoccer-logo.png" alt="We Got Soccer">
+        </a>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off">
+  <a href="#home" class="w3-btn w3-padding w3-light-grey w3-hover-grey"><i class="fa fa-arrow-up w3-margin-right"></i>BACK TO TOP</a>
+  <div class="w3-xlarge w3-section">
+   <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-follow-button twitter-follow-button-rendered" title="Twitter Follow Button" src="http://platform.twitter.com/widgets/follow_button.89bd237a86eeb0e8b1de842a4b88b09b.en.html#dnt=false&amp;id=twitter-widget-0&amp;lang=en&amp;screen_name=WalpoleSoccer&amp;show_count=false&amp;show_screen_name=true&amp;size=m&amp;time=1490356074893" style="position: static; visibility: visible; width: 149px; height: 20px;" data-screen-name="WalpoleSoccer"></iframe><script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </div>
+</footer>
+ 
+<!-- Add Google Maps -->
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+
+
+<script>
+<!-- Google Map Location -->
+var myCenter = new google.maps.LatLng(42.167931, -71.221745);
+
+
+function initialize() {
+var mapProp = {
+  center: myCenter,
+  zoom: 13,
+  scrollwheel: false,
+  draggable: false,
+  mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+
+
+var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+
+var marker = new google.maps.Marker({
+  position: myCenter,
+});
+
+
+marker.setMap(map);
+}
+
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+
+
+// Change style of navbar on scroll
+window.onscroll = function() {myFunction()};
+function myFunction() {
+    var navbar = document.getElementById("myNavbar");
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        navbar.className = "w3-navbar" + " w3-card-2" + " w3-animate-top" + " w3-white";
+    } else {
+        navbar.className = navbar.className.replace(" w3-card-2 w3-animate-top w3-white", "");
+    }
+}
+
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function toggleFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+<iframe id="rufous-sandbox" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;" title="Twitter analytics iframe"></iframe><script src="https://cdn.syndication.twimg.com/timeline/profile?callback=__twttr.callbacks.tl_i0_profile_WalpoleSoccer_new&amp;dnt=false&amp;domain=techserver&amp;lang=en&amp;min_position=812806401147998208&amp;screen_name=WalpoleSoccer&amp;suppress_response_codes=true&amp;t=1655951&amp;with_replies=false" async="">
+</script>
+</body>
+</html>
